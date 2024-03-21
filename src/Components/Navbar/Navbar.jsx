@@ -15,6 +15,7 @@ const Navbar = () => {
             src={navlogoLAGRIMA}
             className="nav-logo--title"
             alt="LA.GRIMA"
+            
           />
           <img
             src={navlogoAdmin}
