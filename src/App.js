@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-      <Navbar />
+        <Navbar />
         <Admin />
         <Footer />
       </div>
