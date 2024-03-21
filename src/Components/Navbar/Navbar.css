@@ -1,0 +1,48 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 60px;
+  box-shadow: 0 1px 3px -2px black;
+  margin-bottom: 1px;
+  background: white;
+}
+.nav-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-logo--text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.nav-logo--icon {
+  width: 75px;
+}
+
+.nav-logo--title {
+  width: 200px;
+  padding-bottom: 5px;
+}
+
+.nav-logo--admin {
+  height: 15px;
+}
+
+.nav-profile {
+  width: 75px;
+}
+@media (max-width: 800px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+  .nav-logo {
+    width: 150px;
+  }
+  .nav-profile {
+    width: 60px;
+  }
+}
