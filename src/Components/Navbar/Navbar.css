@@ -22,12 +22,12 @@
     transparent
   );
   border-radius: 20px;
-  transition: 0.3s ease-in-out;
   padding: 0px 20px;
+  transition: 0.3s ease-in-out;
 }
 .nav-logo:hover {
   transform: scale(1.02);
-  box-shadow: 1px 1px 200px rgba(219, 26, 90, 0.3);
+  box-shadow: 0px 0px 200px rgba(219, 26, 90, 0.3);
 }
 
 
@@ -52,6 +52,11 @@
 
 .nav-profile {
   width: 75px;
+  transition: 0.3s ease-in-out;
+}
+.nav-profile:hover {
+  width: 75px;
+  box-shadow: 0px 0px 200px rgba(219, 26, 90, 0.4);
 }
 
 @media (max-width: 800px) {

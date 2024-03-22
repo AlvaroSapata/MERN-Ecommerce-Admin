@@ -7,13 +7,13 @@ import Admin from "./Pages/Admin";
 
 function App() {
   const [isInHome, setIsInHome] = useState(false);
-  console.log(isInHome)
+  const [doesContentFit, setDoesContentFit] = useState(false);
 
   return (
     <BrowserRouter>
-      <div className={isInHome ? 'home' : ''}>
+      <div className={isInHome|| doesContentFit ? 'home' : ''}>
         <Navbar />
-        <Admin setIsInHomeProp={setIsInHome}/> 
+        <Admin setIsInHomeProp={setIsInHome} setDoesContentFitProp={setDoesContentFit}/> 
         <Footer/>
       </div>
     </BrowserRouter>

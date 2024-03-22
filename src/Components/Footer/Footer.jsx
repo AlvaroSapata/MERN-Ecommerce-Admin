@@ -1,13 +1,20 @@
-import React from 'react'
-import './Footer.css'
+import React from "react";
+import "./Footer.css";
+import InstagramIcon from "../Assets/instagram.svg";
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <div className="footer">
       <hr />
-      <p>© 2024 LA.GRIMA Taller | All Right Reserved.</p>
+      <div className="footer-content">
+        <p>© 2024 LA.GRIMA Taller |</p>
+        <a href="https://www.instagram.com/la__grima__taller/" target="_blank" rel="noopener">
+          <img src={InstagramIcon} alt="Insta" />
+        </a>
+        <p>| All rights reserved</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

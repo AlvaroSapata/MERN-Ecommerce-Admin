@@ -7,20 +7,27 @@ import AddProduct from "../Components/AddProduct/AddProduct";
 import ListProduct from "../Components/ListProduct/ListProduct";
 import BackgroundImage from "../Components/Assets/backgroundImage";
 
-const Admin = ({ setIsInHomeProp }) => {
+const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
   const location = useLocation();
   const [isInHome, setIsInHome] = useState(false);
+  const [doesContentFit, setDoesContentFit] = useState(false);
 
   useEffect(() => {
     const isInHomeValue = location.pathname === "/";
+    const doesContentFitValue = !(
+      document.documentElement.scrollHeight >
+      document.documentElement.clientHeight
+    );
     setIsInHomeProp(isInHomeValue);
-    setIsInHome(isInHomeValue); // Cambia isInHome a true solo si estamos en la página de inicio
-  }, [location.pathname, setIsInHomeProp]);
+    setIsInHome(isInHomeValue);
+    setDoesContentFitProp(doesContentFitValue);
+    setDoesContentFit(doesContentFitValue);
+  }, [location.pathname, setIsInHomeProp, setDoesContentFitProp]);
 
   return (
     <div className="admin">
       <Sidebar />
-      {isInHome && <BackgroundImage />} {/* Renderiza BackgroundImage solo cuando isInHome es verdadero */}
+      {isInHome && <BackgroundImage />}
       <Routes>
         <Route path="/addproduct" element={<AddProduct />} />
         <Route path="/listproduct" element={<ListProduct />} />
