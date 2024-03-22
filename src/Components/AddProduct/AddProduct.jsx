@@ -70,6 +70,7 @@ const AddProduct = () => {
 
   return (
     <div className="auth--container">
+      <h3>Add Product</h3>
       <div className="form--wrapper">
         <form onSubmit={AddProduct}>
           <div className="field--wrapper">

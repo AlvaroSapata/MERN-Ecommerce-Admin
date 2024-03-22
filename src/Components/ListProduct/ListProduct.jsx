@@ -32,20 +32,20 @@ const ListProduct = () => {
 
   return (
     <div className="listproduct">
-      <h2>All Products List</h2>
+      <h3>Products List</h3>
       <div className="listproduct-format-main">
-        <p>Products</p>
-        <p>Title</p>
+        <p></p>
+        <p>Name</p>
         <p>Old Price</p>
         <p>New Price</p>
         <p>Category</p>
-        <p>Remove</p>
+        <p></p>
       </div>
       <div className="listproduct-allproducts">
         <hr />
         {allproducts.map((e) => {
           return (
-            <div key={e.name}>
+            <div key={e.name} className="listproduct-fixer">
               <div className="listproduct-format-main listproduct-format">
                 <img
                   className="listproduct-product-icon"

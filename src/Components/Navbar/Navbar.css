@@ -37,14 +37,32 @@
 .nav-profile {
   width: 75px;
 }
+
 @media (max-width: 800px) {
   .navbar {
     padding: 15px 30px;
   }
-  .nav-logo {
-    width: 150px;
-  }
+
   .nav-profile {
     width: 60px;
   }
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+
+  /* LA.GRTIMA ADMIN PANEL */
+  .nav-logo--icon {
+    width: 50px;
+  }
+  .nav-logo--title {
+    width: 120px;
+    padding-bottom: 5px;
+  }
+  .nav-logo--admin {
+    height: 10px;
+  }
+}
+
