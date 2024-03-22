@@ -18,6 +18,12 @@
   opacity: 0.4;
 }
 
+.spinner {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+}
+
 @media (max-width: 1000px) {
   .background-image {
     width: 500px;
@@ -36,11 +42,19 @@
     flex-direction: column;
     transition: 0.3s ease-in-out;
   }
+  .spinner {
+    top: 35%;
+    left: 46%;
+  }
 }
 
 @media (max-width: 400px) {
-    .background-image {
-      width: 300px;
-      transition: 0.3s ease-in-out;
-    }
+  .background-image {
+    width: 300px;
+    transition: 0.3s ease-in-out;
   }
+  .spinner {
+    top: 35%;
+    left: 42%;
+  }
+}

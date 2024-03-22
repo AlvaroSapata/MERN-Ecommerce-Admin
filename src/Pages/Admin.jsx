@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./CSS/Admin.css";
+import { BounceLoader } from "react-spinners";
 
 import Sidebar from "../Components/Sidebar/Sidebar";
 import AddProduct from "../Components/AddProduct/AddProduct";
@@ -34,12 +35,12 @@ const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
   return (
     <div className="admin">
       <Sidebar />
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <div className="spinner"><BounceLoader color="#db1a5a"/></div>  }
       {isInHome && <BackgroundImage />}
       <Routes>
         <Route
           path="/addproduct"
-          element={<AddProduct />} // No es necesario pasar setIsLoading a AddProduct
+          element={<AddProduct />} 
         />
         <Route
           path="/listproduct"

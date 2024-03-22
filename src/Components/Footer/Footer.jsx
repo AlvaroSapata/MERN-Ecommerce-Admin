@@ -7,11 +7,11 @@ const Footer = () => {
     <div className="footer">
       <hr />
       <div className="footer-content">
-        <p>© 2024 LA.GRIMA Taller |</p>
+        <p>© 2024 LA.GRIMA Taller </p>
         <a href="https://www.instagram.com/la__grima__taller/" target="_blank" rel="noopener">
           <img src={InstagramIcon} alt="Insta" />
         </a>
-        <p>| All rights reserved</p>
+        <p> All rights reserved</p>
       </div>
     </div>
   );
