@@ -1,3 +1,4 @@
+// En el componente Admin
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./CSS/Admin.css";
@@ -11,26 +12,39 @@ const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
   const location = useLocation();
   const [isInHome, setIsInHome] = useState(false);
   const [doesContentFit, setDoesContentFit] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const isInHomeValue = location.pathname === "/";
-    const doesContentFitValue = !(
-      document.documentElement.scrollHeight >
-      document.documentElement.clientHeight
-    );
     setIsInHomeProp(isInHomeValue);
     setIsInHome(isInHomeValue);
-    setDoesContentFitProp(doesContentFitValue);
-    setDoesContentFit(doesContentFitValue);
-  }, [location.pathname, setIsInHomeProp, setDoesContentFitProp]);
+  }, [location.pathname, setIsInHomeProp]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const doesContentFitValue = !(
+        document.documentElement.scrollHeight >
+        document.documentElement.clientHeight
+      );
+      setDoesContentFitProp(doesContentFitValue);
+      setDoesContentFit(doesContentFitValue);
+    }
+  }, [isLoading, setDoesContentFitProp]);
 
   return (
     <div className="admin">
       <Sidebar />
+      {isLoading && <p>Loading...</p>}
       {isInHome && <BackgroundImage />}
       <Routes>
-        <Route path="/addproduct" element={<AddProduct />} />
-        <Route path="/listproduct" element={<ListProduct />} />
+        <Route
+          path="/addproduct"
+          element={<AddProduct />} // No es necesario pasar setIsLoading a AddProduct
+        />
+        <Route
+          path="/listproduct"
+          element={<ListProduct setIsLoading={setIsLoading} />} // Pasar setIsLoading a ListProduct
+        />
       </Routes>
     </div>
   );

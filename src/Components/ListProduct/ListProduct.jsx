@@ -3,16 +3,20 @@ import "./ListProduct.css";
 import cross_icon from "../Assets/x-symbol.svg";
 import ConfirmationModal from "../RemoveProduct/RemoveProduct";
 
-const ListProduct = () => {
+const ListProduct = ({ setIsLoading }) => {
   const [allproducts, setAllProducts] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [productIdToRemove, setProductIdToRemove] = useState(null);
   const [productNameToRemove, setProductNameToRemove] = useState(null);
 
   const fetchInfo = () => {
+    setIsLoading(true); // Establecer isLoading a true al iniciar la solicitud de fetch
     fetch("http://localhost:4000/allproducts")
       .then((res) => res.json())
-      .then((data) => setAllProducts(data));
+      .then((data) => {
+        setAllProducts(data);
+        setIsLoading(false); // Establecer isLoading a false cuando la solicitud de fetch está completa
+      });
   };
 
   useEffect(() => {
