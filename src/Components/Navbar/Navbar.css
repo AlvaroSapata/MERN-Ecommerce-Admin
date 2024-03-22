@@ -9,11 +9,27 @@
   /*   background: white;
  */
 }
+
 .nav-logo {
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* background-color: var(--secondaryBgColor); */
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--secondaryBgColor),
+    transparent
+  );
+  border-radius: 20px;
+  transition: 0.3s ease-in-out;
+  padding: 0px 20px;
 }
+.nav-logo:hover {
+  transform: scale(1.02);
+  box-shadow: 1px 1px 200px rgba(219, 26, 90, 0.3);
+}
+
 
 .nav-logo--text {
   display: flex;
@@ -71,4 +87,3 @@
     transition: 0.3s ease-in-out;
   }
 }
-

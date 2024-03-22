@@ -16,10 +16,18 @@
   padding: 5px 10px;
   border-radius: 6px;
   background: var(--secondaryBgColor);
+  
   gap: 20px;
   cursor: pointer;
   color: var(--textColorMain);
+  transition: 0.3s ease-in-out;
 }
+
+.sidebar-item:hover {
+  transform: scale(1.1);
+  box-shadow: 1px 1px 1000px var(--themeColorMain);
+}
+
 @media (max-width: 800px) {
   .sidebar {
     padding: 30px 0px;

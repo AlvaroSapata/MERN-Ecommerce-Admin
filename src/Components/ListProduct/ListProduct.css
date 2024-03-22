@@ -40,7 +40,8 @@
 }
 
 .listproduct-remove-icon:hover {
-  transform: scale(1.5);
+  transform: scale(1.3);
+  box-shadow: 1px 1px 40px rgba(219, 26, 90, 1);
 }
 
 .listproduct-allproducts {
