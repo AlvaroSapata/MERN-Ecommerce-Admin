@@ -55,7 +55,6 @@ const AddProduct = () => {
             alert("Failed", "error");
           }
         });
-        
     }
   };
 
@@ -157,9 +156,8 @@ const AddProduct = () => {
                   border: "1px solid grey",
                   cursor: "pointer",
                 }}
-                className=""
                 src={!image ? upload_area : URL.createObjectURL(image)}
-                alt="Selected Image"
+                alt="SelectedImage"
               />
               <input
                 onChange={(e) => {
