@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import "./Navbar.css";
 import navlogoImg from "../Assets/nav-logo-Image.svg";
 import navlogoLAGRIMA from "../Assets/nav-logo-LAGRIMA.svg";
 import navlogoAdmin from "../Assets/nav-logo-Admin.svg";
-import navprofileIcon from "../Assets/nav-profile.svg";
+import LoginIcon from "../Assets/login.svg";
+import LogoutIcon from "../Assets/logout.svg";
 
 const Navbar = () => {
   return (
@@ -26,7 +27,7 @@ const Navbar = () => {
           </div>
         </div>
       </Link>
-      <img src={navprofileIcon} className="nav-profile" alt="" />
+      <img src={LoginIcon} className="nav-profile" alt="" />
     </div>
   );
 };
