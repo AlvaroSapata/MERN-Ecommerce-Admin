@@ -49,12 +49,13 @@ const AddProduct = () => {
         .then((resp) => resp.json())
         .then((data) => {
           if (data.success) {
-            alert("Product Added");
+            alert("Product Added", "success");
             navigate("/listproduct");
           } else {
-            alert("Failed");
+            alert("Failed", "error");
           }
         });
+        
     }
   };
 
@@ -94,7 +95,7 @@ const AddProduct = () => {
               Product Price
               <input
                 required
-                type="text"
+                type="number"
                 name="old_price"
                 placeholder="Enter product price..."
                 value={productDetails.old_price}
@@ -110,7 +111,7 @@ const AddProduct = () => {
               Product Offer Price
               <input
                 required
-                type="text"
+                type="number"
                 name="new_price"
                 placeholder="Enter product offer price..."
                 value={productDetails.new_price}

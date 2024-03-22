@@ -73,6 +73,24 @@
   font-weight: 500;
 }
 
+/* Estilos para la alerta de éxito */
+.alert.success {
+  background-color: #4caf50; /* Color de fondo verde */
+  color: white; /* Color del texto blanco */
+}
+
+/* Estilos para la alerta de fallo */
+.alert.error {
+  background-color: #f44336; /* Color de fondo rojo */
+  color: white; /* Color del texto blanco */
+}
+
+/* Estilos comunes para las alertas */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
 
 @media(max-width:800px) {
   .addproduct {
