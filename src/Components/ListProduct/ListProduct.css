@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
   gap: 10px;
-  
+
   padding: 20px 0px;
   color: var(--textColorSecondary);
   font-size: 15px;
@@ -32,6 +32,17 @@
   cursor: pointer;
   margin: auto;
 }
+.listproduct-remove-icon {
+  cursor: pointer;
+  margin: auto;
+  color: #8db3dd;
+  transition: 0.3s ease-in-out;
+}
+
+.listproduct-remove-icon:hover {
+  transform: scale(1.5);
+}
+
 .listproduct-allproducts {
   overflow-y: auto;
 }
@@ -55,11 +66,14 @@
     height: 100%;
     padding: 10px 30px;
     margin: 20px auto;
+    transition: 0.3s ease-in-out;
   }
   .listproduct-product-icon {
     height: 60px;
+    transition: 0.3s ease-in-out;
   }
   .listproduct-fixer {
     width: 90vw;
+    transition: 0.3s ease-in-out;
   }
 }

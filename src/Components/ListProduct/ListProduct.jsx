@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./ListProduct.css";
-import cross_icon from "../Assets/cross_icon.png";
+import cross_icon from "../Assets/x-symbol.svg";
+import ConfirmationModal from "../RemoveProduct/RemoveProduct";
 
 const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [productIdToRemove, setProductIdToRemove] = useState(null);
+  const [productNameToRemove, setProductNameToRemove] = useState(null);
 
   const fetchInfo = () => {
     fetch("http://localhost:4000/allproducts")
@@ -15,19 +19,28 @@ const ListProduct = () => {
     fetchInfo();
   }, []);
 
-  const removeProduct = async (id) => {
+  const removeProduct = (id,name) => {
+    setProductIdToRemove(id);
+    setProductNameToRemove(name);
+    setShowConfirmation(true);
+  };
+
+  const confirmRemoveProduct = async () => {
     await fetch("http://localhost:4000/removeproduct", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: id }),
+      body: JSON.stringify({ id: productIdToRemove }),
     });
 
-    fetch("http://localhost:4000/allproducts")
-      .then((res) => res.json())
-      .then((data) => setAllProducts(data));
+    fetchInfo();
+    setShowConfirmation(false);
+  };
+
+  const cancelRemoveProduct = () => {
+    setShowConfirmation(false);
   };
 
   return (
@@ -59,7 +72,7 @@ const ListProduct = () => {
                 <img
                   className="listproduct-remove-icon"
                   onClick={() => {
-                    removeProduct(e.id);
+                    removeProduct(e.id, e.name);
                   }}
                   src={cross_icon}
                   alt="X"
@@ -70,6 +83,14 @@ const ListProduct = () => {
           );
         })}
       </div>
+      {showConfirmation && (
+        <ConfirmationModal
+          productName={productNameToRemove}
+          productId={productIdToRemove}
+          onConfirm={confirmRemoveProduct}
+          onCancel={cancelRemoveProduct}
+        />
+      )}
     </div>
   );
 };

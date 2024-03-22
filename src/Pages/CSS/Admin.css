@@ -21,22 +21,26 @@
 @media (max-width: 1000px) {
   .background-image {
     width: 500px;
+    transition: 0.3s ease-in-out;
   }
 }
 @media (max-width: 900px) {
   .background-image {
     width: 400px;
+    transition: 0.3s ease-in-out;
   }
 }
 
 @media (max-width: 800px) {
   .admin {
     flex-direction: column;
+    transition: 0.3s ease-in-out;
   }
 }
 
 @media (max-width: 400px) {
     .background-image {
       width: 300px;
+      transition: 0.3s ease-in-out;
     }
   }

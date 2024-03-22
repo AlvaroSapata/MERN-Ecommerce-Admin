@@ -93,7 +93,7 @@ textarea {
   border: none;
   border-radius: 2px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
 }
 
 .btn--lg {
@@ -128,7 +128,7 @@ textarea {
 .header--link {
   color: #c7d8eb;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
 }
 
 .header--link:hover {
@@ -193,7 +193,7 @@ textarea {
 .delete--btn {
   color: #8db3dd;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
   width: 16px;
 }
 
@@ -204,11 +204,13 @@ textarea {
 @media (max-width: 800px) {
   .form--wrapper {
     padding: 20px;
+    transition: 0.3s ease-in-out;
   }
   body,
   .field--wrapper label input,
   .field--wrapper label select {
     font-size: 0.95rem;
+    transition: 0.3s ease-in-out;
   }
 }
 
@@ -216,10 +218,12 @@ textarea {
   .form--wrapper {
     padding: 10px;
     width: 100%;
+    transition: 0.3s ease-in-out;
   }
   body,
   .field--wrapper label input,
   .field--wrapper label select{
     font-size: 0.9rem;
+    transition: 0.3s ease-in-out;
   }
 }

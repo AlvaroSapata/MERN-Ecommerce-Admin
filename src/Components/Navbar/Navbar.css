@@ -41,28 +41,34 @@
 @media (max-width: 800px) {
   .navbar {
     padding: 15px 30px;
+    transition: 0.3s ease-in-out;
   }
 
   .nav-profile {
     width: 60px;
+    transition: 0.3s ease-in-out;
   }
 }
 
 @media (max-width: 600px) {
   .navbar {
     padding: 15px 30px;
+    transition: 0.3s ease-in-out;
   }
 
-  /* LA.GRTIMA ADMIN PANEL */
+  /* LA.GRIMA ADMIN PANEL */
   .nav-logo--icon {
     width: 50px;
+    transition: 0.3s ease-in-out;
   }
   .nav-logo--title {
     width: 120px;
     padding-bottom: 5px;
+    transition: 0.3s ease-in-out;
   }
   .nav-logo--admin {
     height: 10px;
+    transition: 0.3s ease-in-out;
   }
 }
 

@@ -1,0 +1,45 @@
+.confirmation-modal {
+  position: fixed;
+  top: 200px;
+  width: 350px;
+  border: solid 2px;
+  border-color: var(--mainBgColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: var(--textColorSecondary);
+  box-shadow: var(--themeColorMain) 0px 0px 250px;
+}
+.confirmation-modal p {
+   color: var(--bgColorMain);
+   color: black;
+  }
+.btn-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-wrapper button {
+  color: var(--textColorMain);
+  width: 100px;
+  padding:10px 5px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-wrapper button:hover {
+   scale: 1.1;  
+  }
+.remove-confirm {
+  background-color: #db1a5a;
+}
+.remove-cancel {
+  background-color: grey;
+}

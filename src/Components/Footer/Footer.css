@@ -39,11 +39,13 @@
 
   .footer p {
     font-size: 0.8rem;
+    transition: 0.3s ease-in-out;
   }
 }
 @media(max-width:600px){
 
   .footer p {
     font-size: 0.6rem;
+    transition: 0.3s ease-in-out;
   }
 }

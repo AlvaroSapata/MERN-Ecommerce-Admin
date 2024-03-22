@@ -28,8 +28,10 @@
     max-width: none;
     height: auto;
     justify-content: center;
+    transition: 0.3s ease-in-out;
   }
   .sidebar-item {
     margin: 0;
+    transition: 0.3s ease-in-out;
   }
 }
