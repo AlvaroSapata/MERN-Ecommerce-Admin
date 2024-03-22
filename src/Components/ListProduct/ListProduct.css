@@ -35,6 +35,14 @@
 .listproduct-allproducts{
     overflow-y: auto;
 }
+/* .listproduct hr {
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, var(--mainBgColor), var(--textColorMain),var(--mainBgColor));
+  border: none;
+  margin-bottom: 5px;
+}
+ */
 @media(max-width:800px){
   .listproduct {
     box-sizing: border-box;

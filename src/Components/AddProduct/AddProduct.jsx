@@ -1,17 +1,22 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import upload_area from "../Assets/upload_area.svg";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
+
   const [image, setImage] = useState(false);
   const [productDetails, setProductDetails] = useState({
     name: "",
     image: "",
-    category: "women",
+    category: "choose",
     new_price: "",
     old_price: "",
   });
 
-  const AddProduct = async () => {
+  const AddProduct = async (e) => {
+    e.preventDefault();
+    console.log("adding product");
     let dataObj;
     let product = productDetails;
 
@@ -43,18 +48,24 @@ const AddProduct = () => {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          data.success ? alert("Product Added") : alert("Failed");
+          if (data.success) {
+            alert("Product Added");
+            navigate("/listproduct");
+          } else {
+            alert("Failed");
+          }
         });
     }
   };
 
   const changeHandler = (e) => {
-    console.log(e);
     setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
 
   const imageHandler = (e) => {
     setImage(e.target.files[0]);
+    console.log(e.target.files[0]);
   };
 
   return (
@@ -67,7 +78,7 @@ const AddProduct = () => {
               <input
                 required
                 type="text"
-                name="productName"
+                name="name"
                 placeholder="Enter product name..."
                 value={productDetails.name}
                 onChange={(e) => {
@@ -83,7 +94,7 @@ const AddProduct = () => {
               <input
                 required
                 type="text"
-                name="productPrice"
+                name="old_price"
                 placeholder="Enter product price..."
                 value={productDetails.old_price}
                 onChange={(e) => {
@@ -99,7 +110,7 @@ const AddProduct = () => {
               <input
                 required
                 type="text"
-                name="productOfferPrice"
+                name="new_price"
                 placeholder="Enter product offer price..."
                 value={productDetails.new_price}
                 onChange={(e) => {
@@ -117,7 +128,15 @@ const AddProduct = () => {
                 name="category"
                 value={productDetails.category}
                 onChange={changeHandler}
+                className="category-select"
+                style={{
+                  color:
+                    productDetails.category === "choose" ? "grey" : "white",
+                }}
               >
+                <option value="choose" disabled>
+                  Choose category...
+                </option>
                 <option value="men">Men</option>
                 <option value="women">Women</option>
                 <option value="kid">Kid</option>
@@ -154,7 +173,7 @@ const AddProduct = () => {
 
           <div className="field--wrapper">
             <input
-            style={{width: "80%", margin: "auto"}}
+              style={{ width: "80%", margin: "auto" }}
               type="submit"
               value="Add Product"
               className="btn btn--main"
