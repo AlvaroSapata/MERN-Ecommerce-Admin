@@ -11,11 +11,20 @@ const ListProduct = ({ setIsLoading }) => {
 
   const fetchInfo = () => {
     setIsLoading(true); // Establecer isLoading a true al iniciar la solicitud de fetch
-    fetch("http://localhost:4000/allproducts")
-      .then((res) => res.json())
+    fetch("http://localhost:5005/products/all") // Cambia la URL para que coincida con la ruta en el backend
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
       .then((data) => {
         setAllProducts(data);
         setIsLoading(false); // Establecer isLoading a false cuando la solicitud de fetch está completa
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false); // Asegúrate de que isLoading se establezca en false incluso en caso de error
       });
   };
 
@@ -23,24 +32,31 @@ const ListProduct = ({ setIsLoading }) => {
     fetchInfo();
   }, []);
 
-  const removeProduct = (id,name) => {
+  const removeProduct = (id, name) => {
     setProductIdToRemove(id);
     setProductNameToRemove(name);
     setShowConfirmation(true);
   };
 
   const confirmRemoveProduct = async () => {
-    await fetch("http://localhost:4000/removeproduct", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: productIdToRemove }),
-    });
+    try {
+      await fetch(
+        `http://localhost:5005/products/delete/${productIdToRemove}`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    fetchInfo();
-    setShowConfirmation(false);
+      fetchInfo();
+      setShowConfirmation(false);
+    } catch (error) {
+      console.error("Error removing product:", error);
+      // Aquí puedes manejar el error como desees, por ejemplo, mostrar un mensaje al usuario
+    }
   };
 
   const cancelRemoveProduct = () => {
@@ -76,7 +92,7 @@ const ListProduct = ({ setIsLoading }) => {
                 <img
                   className="listproduct-remove-icon"
                   onClick={() => {
-                    removeProduct(e.id, e.name);
+                    removeProduct(e._id, e.name);
                   }}
                   src={cross_icon}
                   alt="X"

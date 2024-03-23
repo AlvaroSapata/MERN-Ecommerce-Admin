@@ -23,7 +23,7 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append("product", image);
 
-    await fetch("http://localhost:4000/upload", {
+    await fetch("http://localhost:5005/multer/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -32,13 +32,14 @@ const AddProduct = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        console.log("Response from multer/upload:", data);
         dataObj = data;
       });
 
     if (dataObj.success) {
       product.image = dataObj.image_url;
-      console.log(product);
-      await fetch("http://localhost:4000/addproduct", {
+      console.log("Product after adding image:", product);
+      await fetch("http://localhost:5005/products/add", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -48,6 +49,7 @@ const AddProduct = () => {
       })
         .then((resp) => resp.json())
         .then((data) => {
+          console.log("Response from products/add:", data);
           if (data.success) {
             alert("Product Added", "success");
             navigate("/listproduct");

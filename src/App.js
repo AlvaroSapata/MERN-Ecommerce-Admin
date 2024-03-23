@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import Admin from "./Pages/Admin";
+// import Register from "./Components/Auth/RegisterPage.jsx"
 
 function App() {
   const [isInHome, setIsInHome] = useState(false);
