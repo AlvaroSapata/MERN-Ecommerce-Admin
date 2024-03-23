@@ -10,23 +10,23 @@ const ListProduct = ({ setIsLoading }) => {
   const [productNameToRemove, setProductNameToRemove] = useState(null);
 
   const fetchInfo = () => {
-    setIsLoading(true); // Establecer isLoading a true al iniciar la solicitud de fetch
-    fetch("http://localhost:5005/products/all") // Cambia la URL para que coincida con la ruta en el backend
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
+    setIsLoading(true);
+    fetch("http://localhost:5005/products/all")
+      .then((res) => res.json())
       .then((data) => {
-        setAllProducts(data);
-        setIsLoading(false); // Establecer isLoading a false cuando la solicitud de fetch está completa
+        if (data.message === "No hay productos.") {
+          setAllProducts([]);
+        } else {
+          setAllProducts(data);
+        }
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setIsLoading(false); // Asegúrate de que isLoading se establezca en false incluso en caso de error
+        setIsLoading(false);
       });
   };
+  
 
   useEffect(() => {
     fetchInfo();
@@ -66,43 +66,49 @@ const ListProduct = ({ setIsLoading }) => {
   return (
     <div className="listproduct">
       <h3>Products List</h3>
-      <div className="listproduct-format-main">
-        <p></p>
-        <p>Name</p>
-        <p>Old Price</p>
-        <p>New Price</p>
-        <p>Category</p>
-        <p></p>
-      </div>
-      <div className="listproduct-allproducts">
-        <hr />
-        {allproducts.map((e) => {
-          return (
-            <div key={e.name} className="listproduct-fixer">
-              <div className="listproduct-format-main listproduct-format">
-                <img
-                  className="listproduct-product-icon"
-                  src={e.image}
-                  alt="productPreview"
-                />
-                <p>{e.name}</p>
-                <p>${e.old_price}</p>
-                <p>${e.new_price}</p>
-                <p>{e.category}</p>
-                <img
-                  className="listproduct-remove-icon"
-                  onClick={() => {
-                    removeProduct(e._id, e.name);
-                  }}
-                  src={cross_icon}
-                  alt="X"
-                />
-              </div>
-              <hr />
-            </div>
-          );
-        })}
-      </div>
+      {allproducts.length === 0 ? (
+        <p>No hay productos disponibles.</p>
+      ) : (
+        <div>
+          <div className="listproduct-format-main">
+            <p></p>
+            <p>Name</p>
+            <p>Old Price</p>
+            <p>New Price</p>
+            <p>Category</p>
+            <p></p>
+          </div>
+          <div className="listproduct-allproducts">
+            <hr />
+            {allproducts.map((e) => {
+              return (
+                <div key={e.name} className="listproduct-fixer">
+                  <div className="listproduct-format-main listproduct-format">
+                    <img
+                      className="listproduct-product-icon"
+                      src={e.image}
+                      alt="productPreview"
+                    />
+                    <p>{e.name}</p>
+                    <p>${e.old_price}</p>
+                    <p>${e.new_price}</p>
+                    <p>{e.category}</p>
+                    <img
+                      className="listproduct-remove-icon"
+                      onClick={() => {
+                        removeProduct(e._id, e.name);
+                      }}
+                      src={cross_icon}
+                      alt="X"
+                    />
+                  </div>
+                  <hr />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
       {showConfirmation && (
         <ConfirmationModal
           productName={productNameToRemove}
