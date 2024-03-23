@@ -8,6 +8,8 @@ import AddProduct from "../Components/AddProduct/AddProduct";
 import ListProduct from "../Components/ListProduct/ListProduct";
 import BackgroundImage from "../Components/Assets/backgroundImage";
 import EditProduct from "../Components/EditProduct/EditProduct";
+import Login from "../Components/Auth/Login";
+import Register from "../Components/Auth/Register";
 
 const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
   const location = useLocation();
@@ -40,9 +42,11 @@ const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
         <Route path="/addproduct" element={<AddProduct />} />
         <Route
           path="/listproduct"
-          element={<ListProduct setIsLoading={setIsLoading} />} // Pasar setIsLoading a ListProduct
+          element={<ListProduct/>} 
         />
         <Route path="/editproduct/:id" element={<EditProduct />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );

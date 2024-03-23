@@ -21,7 +21,7 @@ const AddProduct = () => {
     let product = productDetails;
 
     let formData = new FormData();
-    formData.append("product", image);
+    formData.append("image", image);
 
     await fetch("http://localhost:5005/multer/upload", {
       method: "POST",
