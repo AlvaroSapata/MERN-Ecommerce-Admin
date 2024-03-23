@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { BounceLoader } from "react-spinners";
 
 const EditProduct = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true); // Estado para controlar el spinner de carga
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -15,8 +17,10 @@ const EditProduct = () => {
         const data = await response.json();
         console.log("Data received from server:", data);
         setProduct(data.product);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching product:", error);
+        setIsLoading(false);
       }
     };
 
@@ -114,8 +118,12 @@ const EditProduct = () => {
     console.log(e.target.files[0]);
   };
 
-  if (!product) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="spinner">
+        <BounceLoader color="#db1a5a" />
+      </div>
+    );
   }
 
   return (

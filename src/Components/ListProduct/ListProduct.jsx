@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ListProduct.css";
 import cross_icon from "../Assets/x-symbol.svg";
+import edit_icon from "../Assets/edit.svg";
 import ConfirmationModal from "../RemoveProduct/RemoveProduct";
+import { BounceLoader } from "react-spinners"; // Importa BounceLoader
 
-const ListProduct = ({ setIsLoading }) => {
+const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [productIdToRemove, setProductIdToRemove] = useState(null);
   const [productNameToRemove, setProductNameToRemove] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // Agrega estado para isLoading
 
   const fetchInfo = () => {
     setIsLoading(true);
@@ -66,6 +69,11 @@ const ListProduct = ({ setIsLoading }) => {
   return (
     <div className="listproduct">
       <h3>Products List</h3>
+      {isLoading && (
+        <div className="spinner">
+          <BounceLoader color="#db1a5a" />
+        </div>
+      )}
       {allproducts.length === 0 ? (
         <p>No hay productos disponibles.</p>
       ) : (
@@ -101,10 +109,10 @@ const ListProduct = ({ setIsLoading }) => {
                       src={cross_icon}
                       alt="X"
                     />
-                    <Link to={`/editproduct/${e._id}`}>
-                      <button>Edit</button>
-                    </Link>
                   </div>
+                  <Link to={`/editproduct/${e._id}`}>
+                    <img src={edit_icon} alt="Edit" />
+                  </Link>
                   <hr />
                 </div>
               );
