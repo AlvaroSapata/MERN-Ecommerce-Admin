@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./ListProduct.css";
 import cross_icon from "../Assets/x-symbol.svg";
 import ConfirmationModal from "../RemoveProduct/RemoveProduct";
@@ -26,7 +27,6 @@ const ListProduct = ({ setIsLoading }) => {
         setIsLoading(false);
       });
   };
-  
 
   useEffect(() => {
     fetchInfo();
@@ -73,8 +73,8 @@ const ListProduct = ({ setIsLoading }) => {
           <div className="listproduct-format-main">
             <p></p>
             <p>Name</p>
-            <p>Old Price</p>
-            <p>New Price</p>
+            <p>Price</p>
+            <p>Offer</p>
             <p>Category</p>
             <p></p>
           </div>
@@ -101,6 +101,9 @@ const ListProduct = ({ setIsLoading }) => {
                       src={cross_icon}
                       alt="X"
                     />
+                    <Link to={`/editproduct/${e._id}`}>
+                      <button>Edit</button>
+                    </Link>
                   </div>
                   <hr />
                 </div>
