@@ -7,6 +7,7 @@ const LoginPage = () => {
   const { authenticateUser } = useContext(AuthContext); // Usa el contexto de autenticación
   const navigate = useNavigate(); // Utiliza useNavigate para manejar la navegación
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState(""); // Estado para almacenar el mensaje de error
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,13 +18,19 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       // Llama al servicio de inicio de sesión para obtener el token de autenticación
-      const { authToken } = await loginService(credentials);
-      // Guarda el token de autenticación en localStorage
-      localStorage.setItem("authToken", authToken);
-      // Llama a la función authenticateUser para establecer el estado de autenticación en la aplicación
-      await authenticateUser();
-      // Redirige al usuario a la página principal después de iniciar sesión correctamente
-      navigate("/");
+      const { authToken, message } = await loginService(credentials);
+      if (message) {
+        // Si hay un mensaje de error, establece el mensaje de error en el estado
+        setErrorMessage(message);
+      } else {
+        // Si no hay mensaje de error, guarda el token de autenticación en localStorage
+        localStorage.setItem("authToken", authToken);
+        // Llama a la función authenticateUser para establecer el estado de autenticación en la aplicación
+        await authenticateUser();
+        setErrorMessage(""); // Limpia el mensaje de error
+        // Redirige al usuario a la página principal después de iniciar sesión correctamente
+        navigate("/");
+      }
     } catch (error) {
       console.error("Error during login:", error);
     }
@@ -62,6 +69,10 @@ const LoginPage = () => {
             </label>
           </div>
 
+          {errorMessage && (
+            <small style={{ color: "#A01848" }}>{errorMessage}</small>
+          )}
+
           <div className="field--wrapper">
             <input
               type="submit"
@@ -71,9 +82,9 @@ const LoginPage = () => {
           </div>
         </form>
 
-        <p>
+        {/* <p>
           Don't have an account? Register <Link to="/register">here</Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

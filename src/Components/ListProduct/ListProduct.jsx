@@ -109,10 +109,16 @@ const ListProduct = () => {
                       src={cross_icon}
                       alt="X"
                     />
+                    <Link to={`/editproduct/${e._id}`}>
+                      <div className="listproduct-edit-container">
+                        <img
+                          src={edit_icon}
+                          alt="Edit"
+                          className="listproduct-edit-icon"
+                        />
+                      </div>
+                    </Link>
                   </div>
-                  <Link to={`/editproduct/${e._id}`}>
-                    <img src={edit_icon} alt="Edit" />
-                  </Link>
                   <hr />
                 </div>
               );
