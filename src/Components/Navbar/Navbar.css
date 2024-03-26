@@ -51,12 +51,24 @@
 }
 
 .nav-profile {
-  width: 50px;
+  width: auto;
   transition: 0.3s ease-in-out;
 }
 .nav-profile:hover {
   scale: 1.1;
   box-shadow: 0px 0px 200px rgba(219, 26, 90, 0.4);
+}
+
+.nav-profile--icon {
+  width: 50px;
+}
+
+.logged{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
 }
 
 @media (max-width: 800px) {
@@ -69,12 +81,21 @@
     width: 40px;
     transition: 0.3s ease-in-out;
   }
+  .nav-profile--icon {
+    width: 40px;
+  }
 }
 
 @media (max-width: 600px) {
   .navbar {
     padding: 15px 30px;
     transition: 0.3s ease-in-out;
+  }
+  .logged{
+    scale: 0.8;
+  }
+  .nav-profile--icon{
+    width: 35px;
   }
 
   /* LA.GRIMA ADMIN PANEL */

@@ -47,19 +47,21 @@ const Navbar = () => {
         </div>
       </Link>
       {isLoggedIn ? ( // Si hay un usuario autenticado, muestra su nombre y botón de logout
-        <div className="nav-profile">
-          <p>Welcome {user.name}</p>
-          <img
-            src={LogoutIcon}
-            className="nav-profile--icon"
-            alt="Logout"
-            onClick={handleLogout}
-          />
+        <div className="logged">
+            <p>Welcome {user.name}</p>
+          <div className="nav-profile">
+            <img
+              src={LogoutIcon}
+              className="nav-profile--icon"
+              alt="Logout"
+              onClick={handleLogout}
+            />
+          </div>
         </div>
       ) : (
         // Si no hay usuario autenticado, muestra el botón de login
         <Link to="/login">
-          <img src={LoginIcon} className="nav-profile" alt="Login" />
+          <img src={LoginIcon} className="nav-profile--icon" alt="Login" />
         </Link>
       )}
     </div>
