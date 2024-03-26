@@ -11,16 +11,23 @@ import EditProduct from "../Components/EditProduct/EditProduct";
 import Login from "../Components/Auth/Login";
 import Register from "../Components/Auth/Register";
 
-const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
+const Admin = ({ setIsInHomeProp, setDoesContentFitProp, setIsInLoginProp }) => {
   const location = useLocation();
   const [isInHome, setIsInHome] = useState(false);
+  const [isInLogin, setIsInLogin] = useState(false);
   const [doesContentFit, setDoesContentFit] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const isInHomeValue = location.pathname === "/";
     setIsInHomeProp(isInHomeValue);
     setIsInHome(isInHomeValue);
+    console.log("Home", isInHomeValue);
+
+    //!
+    const isInLoginValue = location.pathname === "/login";
+    setIsInLogin(isInLogin);
+    console.log("Login", isInLoginValue);
   }, [location.pathname, setIsInHomeProp]);
 
   useEffect(() => {
@@ -32,6 +39,8 @@ const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
       setDoesContentFitProp(doesContentFitValue);
       setDoesContentFit(doesContentFitValue);
     }
+    console.log("isLoading", isLoading);
+    console.log("doesContentFit",doesContentFit);
   }, [isLoading, setDoesContentFitProp]);
 
   return (
@@ -40,10 +49,7 @@ const Admin = ({ setIsInHomeProp, setDoesContentFitProp }) => {
       {isInHome && <BackgroundImage />}
       <Routes>
         <Route path="/addproduct" element={<AddProduct />} />
-        <Route
-          path="/listproduct"
-          element={<ListProduct/>} 
-        />
+        <Route path="/listproduct" element={<ListProduct />} />
         <Route path="/editproduct/:id" element={<EditProduct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

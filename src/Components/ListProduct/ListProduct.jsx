@@ -24,6 +24,7 @@ const ListProduct = () => {
           setAllProducts(data);
         }
         setIsLoading(false);
+        console.log(isLoading)
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
