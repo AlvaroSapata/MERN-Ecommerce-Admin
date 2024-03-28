@@ -14,9 +14,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className={isInHome|| isInLogin || doesContentFit ? 'home' : ''}>
+      <div className={isInHome|| isInLogin ? 'home' : ''}>
         <Navbar />
-        <Admin setIsInHomeProp={setIsInHome} setDoesContentFitProp={setDoesContentFit} setIsInLoginProp={setIsInLogin}/> 
+        <Admin setIsInHomeProp={setIsInHome} setDoesContentFitProp={setDoesContentFit} setIsInLoginProp={setIsInLogin} doesContentFit={doesContentFit}/> 
         <Footer/>
       </div>
     </BrowserRouter>

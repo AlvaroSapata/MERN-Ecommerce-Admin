@@ -8,7 +8,7 @@ const Footer = () => {
       <hr />
       <div className="footer-content">
         <p>© 2024 LA.GRIMA Taller </p>
-        <a href="https://www.instagram.com/la__grima__taller/" target="_blank" rel="noopener">
+        <a href="https://www.instagram.com/la__grima__taller/" target="_blank" rel="noreferrer">
           <img src={InstagramIcon} alt="Insta" />
         </a>
         <p> All rights reserved</p>

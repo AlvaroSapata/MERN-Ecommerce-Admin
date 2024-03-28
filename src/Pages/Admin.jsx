@@ -11,7 +11,11 @@ import EditProduct from "../Components/EditProduct/EditProduct";
 import Login from "../Components/Auth/Login";
 import Register from "../Components/Auth/Register";
 
-const Admin = ({ setIsInHomeProp, setDoesContentFitProp, setIsInLoginProp }) => {
+const Admin = ({
+  setIsInHomeProp,
+  setDoesContentFitProp,
+  setIsInLoginProp,
+}) => {
   const location = useLocation();
   const [isInHome, setIsInHome] = useState(false);
   const [isInLogin, setIsInLogin] = useState(false);
@@ -26,22 +30,29 @@ const Admin = ({ setIsInHomeProp, setDoesContentFitProp, setIsInLoginProp }) => 
 
     //!
     const isInLoginValue = location.pathname === "/login";
-    setIsInLogin(isInLogin);
-    console.log("Login", isInLoginValue);
-  }, [location.pathname, setIsInHomeProp]);
+    setIsInLoginProp(isInLoginValue); // <-- Aquí deberías usar setIsInLoginProp
+    setIsInLogin(isInLoginValue);
+    console.log("Login",isInLogin, setIsLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname, setIsInHomeProp, setIsInLoginProp]);
 
   useEffect(() => {
-    if (!isLoading) {
-      const doesContentFitValue = !(
-        document.documentElement.scrollHeight >
+    if (!isLoading || location.pathname === "/listproduct") {
+      const doesContentFitValue =
+        document.documentElement.scrollHeight <=
+        document.documentElement.clientHeight;
+      console.log(
+        document.documentElement.scrollHeight,
+        "<=",
         document.documentElement.clientHeight
       );
       setDoesContentFitProp(doesContentFitValue);
       setDoesContentFit(doesContentFitValue);
     }
     console.log("isLoading", isLoading);
-    console.log("doesContentFit",doesContentFit);
-  }, [isLoading, setDoesContentFitProp]);
+    console.log("doesContentFit", doesContentFit);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, location.pathname, setDoesContentFitProp]);
 
   return (
     <div className="admin">

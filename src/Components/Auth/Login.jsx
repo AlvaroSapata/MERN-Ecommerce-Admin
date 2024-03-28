@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../utils/auth.context"; // Importa el contexto de autenticación
-import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate desde react-router-dom
+import { useNavigate } from "react-router-dom"; // Importa useNavigate desde react-router-dom
 import { loginService } from "../../utils/auth.services.js"; // Importa el servicio de inicio de sesión
 
 const LoginPage = () => {

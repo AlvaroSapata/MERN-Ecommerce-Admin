@@ -6,6 +6,7 @@ import edit_icon from "../Assets/edit.svg";
 import ConfirmationModal from "../RemoveProduct/RemoveProduct";
 import { BounceLoader } from "react-spinners"; // Importa BounceLoader
 
+
 const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -24,7 +25,7 @@ const ListProduct = () => {
           setAllProducts(data);
         }
         setIsLoading(false);
-        console.log(isLoading)
+        console.log("isLoading", isLoading);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -34,6 +35,7 @@ const ListProduct = () => {
 
   useEffect(() => {
     fetchInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const removeProduct = (id, name) => {
@@ -75,6 +77,7 @@ const ListProduct = () => {
           <BounceLoader color="#db1a5a" />
         </div>
       )}
+
       {allproducts.length === 0 ? (
         <p>No hay productos disponibles.</p>
       ) : (
