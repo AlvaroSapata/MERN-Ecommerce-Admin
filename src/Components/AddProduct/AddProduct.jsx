@@ -140,9 +140,9 @@ const AddProduct = () => {
                 <option value="choose" disabled>
                   Choose category...
                 </option>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
-                <option value="kid">Kid</option>
+                <option value="t-shirt">T-shirt</option>
+                <option value="hoodie">Hoodie</option>
+                <option value="misc">Miscellaneus</option>
               </select>
             </label>
           </div>
