@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../utils/auth.context"; // Importa el contexto de autenticación
 import { useNavigate } from "react-router-dom"; // Importa useNavigate desde react-router-dom
 import { loginService } from "../../utils/auth.services.js"; // Importa el servicio de inicio de sesión
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const { authenticateUser } = useContext(AuthContext); // Usa el contexto de autenticación
@@ -82,9 +83,9 @@ const LoginPage = () => {
           </div>
         </form>
 
-        {/* <p>
-          Don't have an account? Register <Link to="/register">here</Link>
-        </p> */}
+         <p>
+          Don't have an account? <Link to="/register" className="loginSignupLink">Register here</Link>
+        </p> 
       </div>
     </div>
   );

@@ -11,15 +11,11 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        console.log("Fetching product with ID:", id);
         const response = await fetch(`http://localhost:5005/products/${id}`);
-        console.log("Response from server:", response);
         const data = await response.json();
-        console.log("Data received from server:", data);
         setProduct(data.product);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching product:", error);
         setIsLoading(false);
       }
     };
@@ -50,7 +46,6 @@ const EditProduct = () => {
 
   const updateProduct = async (e) => {
     e.preventDefault();
-    console.log("updating product");
   
     try {
       const updatedProductData = {
@@ -93,7 +88,6 @@ const EditProduct = () => {
       );
   
       const data = await response.json();
-      console.log("Response from product update:", data);
   
       if (data.product) {
         alert("Product updated successfully");
@@ -110,12 +104,10 @@ const EditProduct = () => {
   
   const changeHandler = (e) => {
     setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const imageHandler = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
 
   if (isLoading) {

@@ -16,7 +16,6 @@ const AddProduct = () => {
 
   const AddProduct = async (e) => {
     e.preventDefault();
-    console.log("adding product");
     let dataObj;
     let product = productDetails;
 
@@ -32,13 +31,11 @@ const AddProduct = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("Response from multer/upload:", data);
         dataObj = data;
       });
 
     if (dataObj.success) {
       product.image = dataObj.image_url;
-      console.log("Product after adding image:", product);
       await fetch("http://localhost:5005/products/add", {
         method: "POST",
         headers: {
@@ -49,7 +46,6 @@ const AddProduct = () => {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          console.log("Response from products/add:", data);
           if (data.success) {
             alert("Product Added", "success");
             navigate("/listproduct");
@@ -62,12 +58,10 @@ const AddProduct = () => {
 
   const changeHandler = (e) => {
     setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const imageHandler = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
 
   return (

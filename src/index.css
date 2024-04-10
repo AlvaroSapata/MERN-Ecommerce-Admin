@@ -59,6 +59,13 @@ body {
  /*  padding: 2em; */
 }
 
+.loginSignupLink{
+  color: var(--themeColorMain);
+  opacity: 0.8;
+  text-decoration: none;
+
+}
+
 .field--wrapper {
   display: flex;
   flex-direction: column;
