@@ -19,8 +19,9 @@ const Admin = ({
   const location = useLocation();
   const [isInHome, setIsInHome] = useState(false);
   const [isInLogin, setIsInLogin] = useState(false);
-  const [doesContentFit, setDoesContentFit] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  console.log(isInLogin)
+  // const [doesContentFit, setDoesContentFit] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const isInHomeValue = location.pathname === "/";
@@ -28,22 +29,22 @@ const Admin = ({
     setIsInHome(isInHomeValue);
 
     //!
-    const isInLoginValue = location.pathname === "/login";
-    setIsInLoginProp(isInLoginValue); // <-- Aquí deberías usar setIsInLoginProp
-    setIsInLogin(isInLoginValue);
+    const isInLogin = location.pathname === "/login" || location.pathname === "/register";
+    setIsInLoginProp(isInLogin); // <-- Aquí deberías usar setIsInLoginProp
+    setIsInLogin(isInLogin);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname, setIsInHomeProp, setIsInLoginProp]);
 
-  useEffect(() => {
-    if (!isLoading || location.pathname === "/listproduct") {
-      const doesContentFitValue =
-        document.documentElement.scrollHeight <=
-        document.documentElement.clientHeight;
-      setDoesContentFitProp(doesContentFitValue);
-      setDoesContentFit(doesContentFitValue);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, location.pathname, setDoesContentFitProp]);
+  // useEffect(() => {
+  //   if (!isLoading || location.pathname === "/listproduct") {
+  //     const doesContentFitValue =
+  //       document.documentElement.scrollHeight <=
+  //       document.documentElement.clientHeight;
+  //     setDoesContentFitProp(doesContentFitValue);
+  //     setDoesContentFit(doesContentFitValue);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isLoading, location.pathname, setDoesContentFitProp]);
 
   return (
     <div className="admin">
