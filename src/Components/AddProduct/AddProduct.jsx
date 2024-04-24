@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import upload_area from "../Assets/upload_area.svg";
+import { addProductService } from "../../utils/product.services";
+// import { multerService } from "../../utils/multer.services";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -36,23 +38,14 @@ const AddProduct = () => {
 
     if (dataObj.success) {
       product.image = dataObj.image_url;
-      await fetch("http://localhost:5005/products/add", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          if (data.success) {
-            alert("Product Added", "success");
-            navigate("/listproduct");
-          } else {
-            alert("Failed", "error");
-          }
-        });
+      await addProductService(product).then((data) => {
+        if (data.success) {
+          alert("Product Added", "success");
+          navigate("/listproduct");
+        } else {
+          alert("Failed", "error");
+        }
+      });
     }
   };
 
