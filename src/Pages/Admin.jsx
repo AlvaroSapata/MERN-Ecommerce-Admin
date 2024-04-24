@@ -19,7 +19,7 @@ const Admin = ({
   const location = useLocation();
   const [isInHome, setIsInHome] = useState(false);
   const [isInLogin, setIsInLogin] = useState(false);
-  console.log(isInLogin)
+  // console.log(isInLogin)
   // const [doesContentFit, setDoesContentFit] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
 

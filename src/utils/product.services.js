@@ -13,7 +13,7 @@ const addProductService = (newProduct) => {
 };
 
 const updateProductService = (productId, updatedProduct) => {
-  return service.put(`/products/update/${productId}`, updatedProduct);
+  return service.put(`/products/edit/${productId}`, updatedProduct);
 };
 
 const deleteProductService = (productId) => {

@@ -10,14 +10,13 @@ const EditProduct = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true); // Estado para controlar el spinner de carga
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await getProductDetailsService(id); // Llama al servicio
-        const data = response.data; // Ajusta esto según la estructura de tu respuesta
-        setProduct(data.product);
+        const response = await getProductDetailsService(id);
+        setProduct(response.product);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -63,13 +62,10 @@ const EditProduct = () => {
         const formData = new FormData();
         formData.append("image", image);
 
-        const uploadResponse = await fetch(
-          "https://lagrima-server.adaptable.app/multer/upload",
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
+        const uploadResponse = await fetch("https://lagrima-server.adaptable.app/multer/upload", {
+          method: "POST",
+          body: formData,
+        });
 
         const uploadData = await uploadResponse.json();
 
@@ -80,16 +76,17 @@ const EditProduct = () => {
         }
       }
 
-      const response = await updateProductService(
-        product._id,
-        updatedProductData
-      ); // Llama al servicio
+      if (product && product._id) { // Verifica que product y product._id existan
+        const response = await updateProductService(product._id, updatedProductData);
 
-      if (response.data.product) {
-        alert("Product updated successfully");
-        navigate("/listproduct");
+        if (response.product) {
+          alert("Product updated successfully");
+          navigate("/listproduct");
+        } else {
+          alert("Failed to update product");
+        }
       } else {
-        alert("Failed to update product");
+        throw new Error("Product or product ID is missing");
       }
     } catch (error) {
       console.error("Error updating product:", error);
@@ -177,9 +174,9 @@ const EditProduct = () => {
                 <option value="choose" disabled>
                   Choose category...
                 </option>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
-                <option value="kid">Kid</option>
+                <option value="t-shirt">T-shirt</option>
+                <option value="hoodie">Hoodie</option>
+                <option value="misc">Miscellaneus</option>
               </select>
             </label>
           </div>
