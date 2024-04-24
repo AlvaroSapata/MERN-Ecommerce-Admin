@@ -59,6 +59,11 @@ const ListProduct = () => {
     setShowConfirmation(false);
   };
 
+  // Función para capitalizar la primera letra de una cadena
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   return (
     <div className="listproduct">
       <h3>Products List</h3>
@@ -68,9 +73,11 @@ const ListProduct = () => {
         </div>
       )}
 
-      {allproducts.length === 0 ? (
+      {!isLoading && allproducts.length === 0 && (
         <p>No hay productos disponibles.</p>
-      ) : (
+      )}
+
+      {!isLoading && allproducts.length > 0 && (
         <div>
           <div className="listproduct-format-main">
             <p></p>
@@ -84,7 +91,7 @@ const ListProduct = () => {
             <hr />
             {allproducts.map((e) => {
               return (
-                <div key={e.name} className="listproduct-fixer">
+                <div key={e._id} className="listproduct-fixer">
                   <div className="listproduct-format-main listproduct-format">
                     <img
                       className="listproduct-product-icon"
@@ -94,7 +101,7 @@ const ListProduct = () => {
                     <p>{e.name}</p>
                     <p>${e.old_price}</p>
                     <p>${e.new_price}</p>
-                    <p>{e.category}</p>
+                    <p>{capitalizeFirstLetter(e.category)}</p> {/* Capitalizar la primera letra */}
                     <img
                       className="listproduct-remove-icon"
                       onClick={() => {
