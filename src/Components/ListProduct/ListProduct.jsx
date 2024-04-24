@@ -96,7 +96,7 @@ const ListProduct = () => {
                     <img
                       className="listproduct-product-icon"
                       src={e.image}
-                      alt="productPreview"
+                      alt="Product"
                     />
                     <p>{e.name}</p>
                     <p>${e.old_price}</p>
