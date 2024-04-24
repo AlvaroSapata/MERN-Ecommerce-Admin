@@ -63,12 +63,14 @@
   width: 50px;
 }
 
-.logged{
+.loggedIn, .loggedOut{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
+  color: var(--themeColorMain);
+  font-size: smaller;
 }
 
 @media (max-width: 800px) {

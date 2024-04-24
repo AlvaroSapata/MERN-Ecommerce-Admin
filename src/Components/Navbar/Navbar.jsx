@@ -11,6 +11,7 @@ import { AuthContext } from "../../utils/auth.context"; // Importa el contexto d
 const Navbar = () => {
   const { user, isLoggedIn, authenticateUser } = useContext(AuthContext); // Obtiene el usuario y el estado de autenticación del contexto de autenticación
   const navigate = useNavigate();
+  console.log(isLoggedIn, user);
 
   const handleLogout = async () => {
     try {
@@ -45,8 +46,7 @@ const Navbar = () => {
         </div>
       </Link>
       {isLoggedIn ? ( // Si hay un usuario autenticado, muestra su nombre y botón de logout
-        <div className="logged">
-          <p>Welcome {user.name}</p>
+        <div className="loggedIn">
           <div className="nav-profile">
             <img
               src={LogoutIcon}
@@ -55,12 +55,18 @@ const Navbar = () => {
               onClick={handleLogout}
             />
           </div>
+          <p>Logout</p>
         </div>
       ) : (
         // Si no hay usuario autenticado, muestra el botón de login
-        <Link to="/login">
-          <img src={LoginIcon} className="nav-profile--icon" alt="Login" />
-        </Link>
+        <div className="loggedOut">
+          <div className="nav-profile">
+            <Link to="/login">
+              <img src={LoginIcon} className="nav-profile--icon" alt="Login" />
+            </Link>
+          </div>
+          <p>Login</p>
+        </div>
       )}
     </div>
   );
