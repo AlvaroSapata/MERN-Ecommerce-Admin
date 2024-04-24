@@ -9,9 +9,8 @@ import LogoutIcon from "../Assets/logout.svg";
 import { AuthContext } from "../../utils/auth.context"; // Importa el contexto de autenticación
 
 const Navbar = () => {
-  const { user, isLoggedIn, authenticateUser } = useContext(AuthContext); // Obtiene el usuario y el estado de autenticación del contexto de autenticación
+  const { isLoggedIn, authenticateUser } = useContext(AuthContext); // Obtiene el usuario y el estado de autenticación del contexto de autenticación
   const navigate = useNavigate();
-  console.log(isLoggedIn, user);
 
   const handleLogout = async () => {
     try {
