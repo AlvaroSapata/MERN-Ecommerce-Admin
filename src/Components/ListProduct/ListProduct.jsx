@@ -4,32 +4,33 @@ import "./ListProduct.css";
 import cross_icon from "../Assets/x-symbol.svg";
 import edit_icon from "../Assets/edit.svg";
 import ConfirmationModal from "../RemoveProduct/RemoveProduct";
-import { BounceLoader } from "react-spinners"; // Importa BounceLoader
-
+import { BounceLoader } from "react-spinners";
+import {
+  getProductService,
+  deleteProductService
+} from "../../utils/product.services";
 
 const ListProduct = () => {
   const [allproducts, setAllProducts] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [productIdToRemove, setProductIdToRemove] = useState(null);
   const [productNameToRemove, setProductNameToRemove] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // Agrega estado para isLoading
+  const [isLoading, setIsLoading] = useState(false);
 
-  const fetchInfo = () => {
+  const fetchInfo = async () => {
     setIsLoading(true);
-    fetch("http://localhost:5005/products/all")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message === "No hay productos.") {
-          setAllProducts([]);
-        } else {
-          setAllProducts(data);
-        }
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setIsLoading(false);
-      });
+    try {
+      const data = await getProductService();
+      if (data.message === "No hay productos.") {
+        setAllProducts([]);
+      } else {
+        setAllProducts(data);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -45,22 +46,12 @@ const ListProduct = () => {
 
   const confirmRemoveProduct = async () => {
     try {
-      await fetch(
-        `http://localhost:5005/products/delete/${productIdToRemove}`,
-        {
-          method: "DELETE",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
+      await deleteProductService(productIdToRemove);
       fetchInfo();
       setShowConfirmation(false);
     } catch (error) {
       console.error("Error removing product:", error);
-      // Aquí puedes manejar el error como desees, por ejemplo, mostrar un mensaje al usuario
+      // Handle error as needed
     }
   };
 
