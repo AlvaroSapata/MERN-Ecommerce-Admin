@@ -24,7 +24,7 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append("image", image);
 
-    await fetch("http://localhost:5005/multer/upload", {
+    await fetch("https://lagrima-server.adaptable.app/multer/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
