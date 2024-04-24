@@ -1,19 +1,29 @@
 import service from "./config.services";
 
 const getProductService = () => {
-    return service.get("/products/all");
+  return service.get("/products/all");
+};
+
+const getProductDetailsService = (productId) => {
+  return service.get(`/products/${productId}`);
 };
 
 const addProductService = (newProduct) => {
-    return service.post("/products/add", newProduct);
+  return service.post("/products/add", newProduct);
 };
 
 const updateProductService = (productId, updatedProduct) => {
-    return service.put(`/products/update/${productId}`, updatedProduct);
+  return service.put(`/products/update/${productId}`, updatedProduct);
 };
 
 const deleteProductService = (productId) => {
-    return service.delete(`/products/delete/${productId}`);
+  return service.delete(`/products/delete/${productId}`);
 };
 
-export { getProductService, addProductService, updateProductService, deleteProductService };
+export {
+  getProductService,
+  getProductDetailsService,
+  addProductService,
+  updateProductService,
+  deleteProductService,
+};

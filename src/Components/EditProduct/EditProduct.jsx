@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BounceLoader } from "react-spinners";
+import {
+  getProductDetailsService,
+  updateProductService,
+} from "../../utils/product.services";
 
 const EditProduct = () => {
   const [product, setProduct] = useState(null);
@@ -11,8 +15,8 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5005/products/${id}`);
-        const data = await response.json();
+        const response = await getProductDetailsService(id); // Llama al servicio
+        const data = response.data; // Ajusta esto según la estructura de tu respuesta
         setProduct(data.product);
         setIsLoading(false);
       } catch (error) {
@@ -46,7 +50,7 @@ const EditProduct = () => {
 
   const updateProduct = async (e) => {
     e.preventDefault();
-  
+
     try {
       const updatedProductData = {
         name: productDetails.name,
@@ -54,42 +58,34 @@ const EditProduct = () => {
         new_price: productDetails.new_price,
         old_price: productDetails.old_price,
       };
-  
-      // Si hay una imagen seleccionada, la agregamos al objeto de datos
+
       if (image) {
         const formData = new FormData();
         formData.append("image", image);
-  
-        // Enviamos la nueva imagen al servidor para almacenarla y obtenemos la URL de la imagen actualizada
-        const uploadResponse = await fetch("http://localhost:5005/multer/upload", {
-          method: "POST",
-          body: formData,
-        });
-  
+
+        const uploadResponse = await fetch(
+          "https://lagrima-server.adaptable.app/multer/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
         const uploadData = await uploadResponse.json();
-  
+
         if (uploadData.success) {
-          // Si la carga de la imagen fue exitosa, actualizamos la URL de la imagen en los datos del producto
           updatedProductData.image = uploadData.image_url;
         } else {
           throw new Error("Failed to upload image");
         }
       }
-  
-      const response = await fetch(
-        `http://localhost:5005/products/edit/${product._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedProductData),
-        }
-      );
-  
-      const data = await response.json();
-  
-      if (data.product) {
+
+      const response = await updateProductService(
+        product._id,
+        updatedProductData
+      ); // Llama al servicio
+
+      if (response.data.product) {
         alert("Product updated successfully");
         navigate("/listproduct");
       } else {
@@ -100,8 +96,7 @@ const EditProduct = () => {
       alert("Error updating product");
     }
   };
-  
-  
+
   const changeHandler = (e) => {
     setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
   };
