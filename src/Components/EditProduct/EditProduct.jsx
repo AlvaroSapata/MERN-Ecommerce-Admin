@@ -174,8 +174,8 @@ const EditProduct = () => {
                 <option value="choose" disabled>
                   Choose category...
                 </option>
-                <option value="t-shirt">T-shirt</option>
-                <option value="hoodie">Hoodie</option>
+                <option value="t-shirts">T-shirt</option>
+                <option value="hoodies">Hoodie</option>
                 <option value="misc">Miscellaneus</option>
               </select>
             </label>
