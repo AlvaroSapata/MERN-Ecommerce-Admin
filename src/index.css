@@ -8,7 +8,7 @@ body {
 /* Global settings */
 
 :root {
-  --mainBgColor: rgba(20, 20, 31, 11);
+  --mainBgColor: rgba(20, 20, 31, 1);
   --secondaryBgColor: rgba(27, 27, 39, 1);
   --borderColor1: rgba(40, 41, 57, 1);
   --borderColor2: rgba(79, 86, 105, 1);
