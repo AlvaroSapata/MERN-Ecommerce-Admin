@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { verifyService } from "../utils/auth.services";
-import ScaleLoader from "react-spinners/ScaleLoader";
+import { BounceLoader } from "react-spinners";
 
 const AuthContext = createContext();
 
@@ -50,7 +50,11 @@ function AuthWrapper(props) {
   };
 
   if (isLoading) {
-    return <ScaleLoader color="#471971" className="myLoader" />;
+    return (
+      <div className="spinner">
+        <BounceLoader color="#db1a5a" />
+      </div>
+    );
 
     //3* la renderizacion de la app con el contexto pasado
   }
